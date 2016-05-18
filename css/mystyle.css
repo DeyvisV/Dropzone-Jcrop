@@ -1,0 +1,16 @@
+.jcrop-centered {
+    display: inline-block;
+}
+
+.centrar-contenido {
+    text-align: center;
+}
+
+/*Customizing Dropzone*/
+.dropzone {
+    text-align: center !important;
+}
+
+.dropzone .dz-preview .dz-image {
+    width: 150px !important;
+}

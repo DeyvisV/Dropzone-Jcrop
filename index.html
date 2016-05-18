@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas-Crop</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/css/bootstrap-modal-bs3patch.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/css/bootstrap-modal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/0.9.12/css/jquery.Jcrop.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+</head>
+<body>
+    
+    <section>
+        <button type="button" id="modalButton" class="btn btn-info" data-toggle="modal" data-target="#photosModal">Muchas Fotos</button>
+    </section>
+    <section>
+        <form action="/file-upload" id="mi-dropzone" class="dropzone"></form>
+    </section>
+   
+
+
+    <div id="modalCrearusuario" class="modal container fade" tabindex="-1" data-backdrop="static" data-keyboard="false" style="display: none;">
+        <div class="modal-header">
+            <h4 class="solsoModalTitle">Crear Usuario</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <input id="input_image" type="file" class="form-control crop_image"></input>
+                <input type="hidden" id="image_hidden">
+                <canvas id="canvas-previo"></canvas>
+            </div>
+        </div>
+        <div class="modal-footer">
+        <div class="form-group col-md-12">
+            <button class="btn btn-success btn-sm solsoSave" data-message-title="Create notification" data-message-error="Validation error messages" data-message-success="Data was saved" id="save-user">
+                <i class="fa fa-save"></i> Guardar
+            </button>
+            <button type="reset" class="btn btn-default solsoCancel" data-dismiss="modal" id="cerrar-crear-usuario">Cancel</button>
+        </div>
+        </div>
+    </div>
+
+    <div id="photosModal" class="modal container fade">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+            <h3>Imagenes</h3>
+          </div>
+          <div class="modal-body">
+            <ol id="carousel-li"></ol>
+            <div id="carousel-items" role="listbox"></div>
+            <form action="/file-upload" id="my-dropzone" class="dropzone"></form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn">Cerrar</button>
+            <button onclick="setDataURIS()" id="upload-image-btn" class="btn btn-primary">Subir</button>
+          </div>
+        
+    </div>
+
+    <!-- Modal para multiples crop imagenes -->
+    <div id="imageModal" class="modal container fade" data-width="1000" tabindex="-1" data-focus-on="input:first" data-backdrop="static" data-keyboard="false" style="display: none;">
+        <div class="modal-header">
+          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+          <h3>Recortar imagen</h3>
+        </div>
+        <div id="visualizer" class="modal-body centrar-contenido">
+          <div id="dz-crop-container" class="centrar-contenido"></div>
+          <!-- <img id="preview-image"/> -->
+          <canvas id="canvas-crop" class="hide"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-dismiss="modal" class="btn" id="btn-cancel-dz-crop">Cancelar</button>
+          <button id="crop-image-btn" class="btn btn-danger">Recortar</button>
+          <button id="save-image-btn" class="hide btn btn-primary">OK</button>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modalmanager.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/0.9.12/js/jquery.Jcrop.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+    <script src="js/principal.js"></script>
+    <script src="js/miscript.js"></script>
+</body>
+</html>
