@@ -112,7 +112,7 @@ function crop(){
     $("#canvas-crop")[0].style.display = "inline";
     $('#dz-crop-preview-image').Jcrop({
         addClass: 'jcrop-centered',
-        onChange: genCoords,
+        onChange: genCoords, // Here
         onSelect: genCoords,
         aspectRatio: 1
      });
@@ -129,6 +129,18 @@ function genCoords(c){
       x: img[0].naturalWidth / img.width(),
       y: img[0].naturalHeight / img.height()
     }
+
+    // Here
+    // BUG FIREFOX
+    // the very first time when you will click on the crop area (or the image) 
+    // the values for c.w and c.h will be 0 as no actual area as been selected,
+    // OR Remove the onChange: genCoords in the Jcrop call.
+    if (c.w === 0 && c.h === 0) {
+       //set any arbitrary values
+       c.w = 400;
+       c.h = 400;
+    }
+
     var realImgCrop = {
         width   : Math.round(ratioCanvas.x * c.w),
         height  : Math.round(ratioCanvas.y * c.h),
